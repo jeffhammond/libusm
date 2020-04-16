@@ -21,15 +21,17 @@
 */
 
 #pragma once
+
 #define CL_USE_DEPRECATED_OPENCL_1_1_APIS
 #define CL_USE_DEPRECATED_OPENCL_1_2_APIS
 #define CL_USE_DEPRECATED_OPENCL_2_0_APIS
+
 #include "CL/cl.h"
 #include "CL/cl_ext.h"
 #include "CL/cl_usm.h"
 
 #ifdef __cplusplus
-namespace libusm {
+extern "C" {
 #endif
 
 ///
@@ -37,7 +39,7 @@ namespace libusm {
 /// This function modifies global state and should not be called from
 /// multiple threads!
 ///
-void initialize( cl_platform_id platform );
+void libusm_initialize( cl_platform_id platform );
 
 #ifdef __cplusplus
 }

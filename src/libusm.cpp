@@ -22,6 +22,10 @@
 
 #include "libusm.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #if defined cl_intel_unified_shared_memory
 
 static clHostMemAllocINTEL_fn pfn_clHostMemAllocINTEL = NULL;
@@ -340,15 +344,11 @@ clEnqueueMemAdviseINTEL(
 
 #endif /* cl_intel_unified-shared_memory */
 
-#ifdef __cplusplus
-namespace libusm {
-#endif
-
 #define GET_EXTENSION( _funcname )                                      \
     pfn_ ## _funcname = ( _funcname ## _fn )                            \
         clGetExtensionFunctionAddressForPlatform(platform, #_funcname);
 
-void initialize( cl_platform_id platform )
+void libusm_initialize( cl_platform_id platform )
 {
 #if defined cl_intel_unified_shared_memory
     GET_EXTENSION( clHostMemAllocINTEL );
